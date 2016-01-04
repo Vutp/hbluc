@@ -44,6 +44,7 @@ class Giao_viec extends CI_Controller
         ,'ma_can_bo_giao'=>$_SESSION['ma_can_bo']
         ,'ma_can_bo_nhan'=>$_POST['mcbNhan']
         ,'status'=>$_POST['status']
+        ,'mo_ta'=>$_POST['mota']
         );
 
         $this->db->insert('calendar',$data1);

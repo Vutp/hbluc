@@ -24,6 +24,15 @@
 				</thead>
 				<tbody>
 				<?php
+				function get_string_between_ref($string, $start, $end){
+					$string = ' ' . $string;
+					$ini = strpos($string, $start);
+					if ($ini == 0) return '';
+					$ini += strlen($start);
+					$len = strpos($string, $end, $ini) - $ini;
+					return substr($string, $ini, $len);
+				}
+
 				$array_status='0';
 				foreach ($query->result() as $row){
 					echo '<tr>
@@ -38,10 +47,10 @@
 					if ($row->status==4){
 						echo '<td><button type="button btn-warning" class="btn btn-warning" data-toggle="modal" data-target="#Modal_view_money_'.$row->id.'" class="btn btn-danger" >Trả hồ sơ</button></td>
 							</tr>';
-						echo 	
-						'<div id="Modal_view_money_'.$row->id.'" class="modal fade" role="dialog"  >
+						echo
+								'<div id="Modal_view_money_'.$row->id.'" class="modal fade" role="dialog"  >
 						<div class="modal-dialog">
-			
+
 							<div class="modal-content">
 								<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
@@ -57,38 +66,56 @@
 						</div>
 						</div>';
 
-						}
+					}
 					$val="";
 					if($row->status==6)
 						echo '<td>
 							<button type="button"  class="btn btn-info" onclick=location.href="'.base_url('admin/admin_tra_ho_so/edit_error/'.$row->id.'').'">Nhận hồ sơ lỗi </buton></td>
 							</tr>';
 					if($row->status==7){
-						$da_thu = str_replace('.','', $row->error);
-						$da_thu=explode('-', $da_thu);
-						$a_da_thu=explode('+', $da_thu[0]);
-						if($a_da_thu[1]!='')
-						$val=$a_da_thu[0].' <b>bị lỗi '.$a_da_thu[1].'</b>';
-						for ($i = 2;$i<count($a_da_thu)-1;$i++ ) {
-							if($a_da_thu[$i+1]!='')
-							$val= $val.' <br>'. $a_da_thu[$i].' <b>bị lỗi '.$a_da_thu[$i+1].'</b>';
-							$i++;
-						}
-						$val=$val.'<br>Kết quả: <b>'.$da_thu[1].'</b>';
+
+						$danhsachloi = $row->error;
+
 						echo '<td><button type="button" data-toggle="modal" data-target="#Modal_view_error_'.$row->id.'" class="btn btn-danger" >Trả hồ sơ lỗi</button>&nbsp';
-						echo 	
-						'<div id="Modal_view_error_'.$row->id.'" class="modal fade" role="dialog"  >
+						echo
+								'<div id="Modal_view_error_'.$row->id.'" class="modal fade" role="dialog"  >
 						<div class="modal-dialog">
-			
+
 							<div class="modal-content">
 								<div class="modal-header">
 								<button type="button" class="close" data-dismiss="modal">&times;</button>
 								<h4 class="modal-title">Xác nhận trả hồ sơ lỗi</h4>
 								</div>
-								<div class="modal-body">';
-							echo $val;
-							echo'
-							</div>
+								<div class="modal-body">
+								<table class="table">
+    <thead>
+      <tr>
+        <th class="col-xs-2 text-center">STT</th>
+        <th class="col-xs-5 text-center">Tên Thủ tục</th>
+        <th class="col-xs-5 text-center">Tên Lỗi </th>
+      </tr>
+    </thead>
+    <tbody>';
+
+						$myArraySoLanLoi = explode("parent",$danhsachloi);
+						array_shift($myArraySoLanLoi);
+						$myLastErrorString = $myArraySoLanLoi[count($myArraySoLanLoi)-1];
+						$ThanhPhan = explode("*part*",$myLastErrorString);
+						array_shift($ThanhPhan);
+						for($i = 0; $i<count($ThanhPhan);$i++){
+							$myString = get_string_between_ref($ThanhPhan[$i],'@start@','@end@');
+
+							echo '<tr><td class="text-center">'.($i+1).'</td>';
+							echo '<td class="setWidth concat"><div>'.get_string_between_ref($myString,'#name#','#endname#').'</div></td>';
+							echo '<td class="setWidth concat"><div>'.get_string_between_ref($myString,'#error#','#enderror#').'</div></td></tr>';
+						}
+						echo '<tr  ><td class="error">Lỗi chung</td><td class="setWidth concat" colspan="2"><div>'.get_string_between_ref($myLastErrorString,'*loirieng*','@endloirieng@').'</div></td></tr>';
+
+						echo '</tbody>
+  </table>
+								</div>';
+						echo'
+
 						<div class="modal-footer">
 						<button type="button"  class="btn btn-info" onclick=location.href="'.base_url('admin/admin_tra_ho_so/edit_stt_error/'.$row->id.'').'">Xác nhận trả </buton>
                     	<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
@@ -108,3 +135,4 @@
 	</div><!-- /.panel-body -->
 
 </div><!-- /.col-lg-12 -->
+

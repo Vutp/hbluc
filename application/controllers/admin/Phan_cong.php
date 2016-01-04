@@ -44,9 +44,10 @@ class Phan_cong extends CI_Controller
         {
             $array = array();
             $array['title'] = $row['title'];
-            $array['start'] = $row['enddate'];
+            $array['start'] = $row['startdate'];
             $array['end'] = $row['enddate'];
             $array['id'] = $row['id'];
+            $array['description'] = $row['mo_ta'];
             array_push($events,$array);
 
         }

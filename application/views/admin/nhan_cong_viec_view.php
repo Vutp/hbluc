@@ -205,7 +205,6 @@ else{
 
                 },
                 function (response) {
-                    alert(response);
                     window.location.href = link2;
 
                 }

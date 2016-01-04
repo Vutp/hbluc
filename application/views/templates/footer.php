@@ -37,6 +37,7 @@
 <script src="<?php echo base_url(); ?>js/nodeClient.js"></script>
 <script src="<?php echo base_url(); ?>js/moment.min.js"></script>
 <script src="<?php echo base_url(); ?>js/fullcalendar.min.js"></script>
+<script src="<?php echo base_url(); ?>js/validate.min.js"></script>
 <script>
     $('.Start_noti').on('click',function(){
         $.amaran({
