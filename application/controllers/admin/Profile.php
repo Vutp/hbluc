@@ -7,7 +7,7 @@ class Profile extends CI_Controller {
 		parent::__construct();
 		if(!isset($_SESSION['name_user'])){
 
-			redirect(base_url('trang_chu'));
+			redirect(base_url());
 		} else{
 
 		}
@@ -43,7 +43,7 @@ public function view_nhan_su($id=1)
 		if((!isset($_SESSION['name_user']))||
 			($_SESSION['level']!=100))
 		{
-			redirect(base_url('trang_chu'));
+			redirect(base_url());
 		}
 		$query = $this->db->get_where('user',
 			array('id' => $id),1,0);
@@ -71,11 +71,11 @@ public function check_upload_1()
 			$check_file=TRUE;
 		}
 		if($check_file && !$this->upload->do_upload('avatar')){
-			redirect('trang_chu');
+			redirect();
 		}else{
 			$upload_data=$this->upload->data();
 			if(isset($upload_data['file_name'])){
-				//redirect('trang_chu');
+				//redirect();
 				foreach ($upload_data as $item => $value){
 					echo $item;
 					echo'<br>';

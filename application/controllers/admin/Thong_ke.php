@@ -17,7 +17,7 @@ class Thong_ke extends CI_Controller
                 ($_SESSION['level'] != 22) &&
                 ($_SESSION['level'] != 100))
         ) {
-            redirect(base_url('trang_chu'));
+            redirect(base_url());
         }
 
         $this->load->model('Ho_so');

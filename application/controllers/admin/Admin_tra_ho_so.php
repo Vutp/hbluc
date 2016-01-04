@@ -8,7 +8,7 @@ class Admin_tra_ho_so extends CI_Controller {
 		if((!isset($_SESSION['name_user']))||
 			(($_SESSION['level']!=12)&&
 				($_SESSION['level']!=13))){
-			redirect(base_url('trang_chu'));
+			redirect(base_url());
 		}
 	}
 

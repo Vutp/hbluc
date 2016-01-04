@@ -4,7 +4,7 @@
             <i class="fa fa-arrow-left"></i>
         </li>
         <li>
-            <a href="<?php echo base_url('trang_chu'); ?>">
+            <a href="<?php echo base_url(); ?>">
                 <i class="fa fa-home"></i> Trang chủ
             </a>
         </li>

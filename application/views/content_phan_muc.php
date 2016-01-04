@@ -4,10 +4,10 @@
             <i class="fa fa-arrow-left"></i>
         </li>
         <li>
-            <a href="<?php echo base_url(); ?>trang_chu"><i class="fa fa-home"></i> Trang chủ</a>
+            <a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Trang chủ</a>
         </li>
         <li>
-            <a href="<?php echo base_url(); ?>tu_phap"><i class="fa fa-files-o"></i> Hành chính tư pháp</a>
+            <a href="<?php echo base_url('tu_phap'); ?>"><i class="fa fa-files-o"></i> Hành chính tư pháp</a>
         </li>
     </ol>
     <h3 class="page-header marTop"><i class="fa fa-file-o"></i>

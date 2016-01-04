@@ -7,7 +7,7 @@ public function __construct()
 		parent::__construct();
 		if((!isset($_SESSION['name_user']))||
 			($_SESSION['level']!=4)){
-			redirect(base_url('trang_chu'));
+			redirect(base_url());
 		} else{
 
 		}
@@ -286,6 +286,6 @@ public function edit_thu_tuc($id_node=2)
 		$this->db->where('node_id', $id_node);
 		$this->db->update('map', $data_up);
 
-		redirect(base_url('trang_chu'));
+		redirect(base_url());
 	}
 }

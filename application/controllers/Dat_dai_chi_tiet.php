@@ -26,7 +26,7 @@ class Dat_dai_chi_tiet extends CI_Controller {
 		$thanh_phan_data=$this->thanh_phan
 				->array_trans($list_chi_tiet[0]);
 		if (count($list_chi_tiet)!=1)
-			redirect(base_url('trang_chu'));
+			redirect(base_url());
 		if((!isset($_SESSION['name_user']))||
 				(($_SESSION['level']!=12)&&
 						($_SESSION['level']!=11))){//Neu la tp ngoai

@@ -4,13 +4,13 @@
             <i class="fa fa-arrow-left"></i>
         </li>
         <li>
-            <a href="<?php echo base_url('trang_chu'); ?>"><i class="fa fa-home"></i> Trang chủ</a>
+            <a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Trang chủ</a>
         </li>
     </ol>
     <h3 class="page-header marTop"><i class="fa fa-file-o"></i> Chỉnh sửa hồ sơ</h3>
 
     <script>
-        var k = <?php echo json_encode(base_url('trang_chu')); ?>;
+        var k = <?php echo json_encode(base_url()); ?>;
     </script>
 
     <?php

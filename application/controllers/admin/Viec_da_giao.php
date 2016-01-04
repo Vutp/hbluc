@@ -15,7 +15,7 @@ class Viec_da_giao extends CI_Controller
                 ($_SESSION['level'] != 22)
             )
         ) {
-            redirect(base_url('trang_chu'));
+            redirect(base_url());
         }
 
     }

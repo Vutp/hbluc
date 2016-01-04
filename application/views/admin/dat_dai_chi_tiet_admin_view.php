@@ -14,7 +14,7 @@
 
     <script>
 
-        var k = <?php echo json_encode(base_url('trang_chu')); ?>;
+        var k = <?php echo json_encode(base_url()); ?>;
         var today_1 = <?php echo json_encode(date("His",time()+1)); ?>;
         var today_2 = <?php echo json_encode(date("dmy")); ?>;
         var so_ngay = <?php echo json_encode(0); ?>;

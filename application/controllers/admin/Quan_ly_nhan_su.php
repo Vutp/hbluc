@@ -8,7 +8,7 @@ class Quan_ly_nhan_su extends CI_Controller {
 		if((!isset($_SESSION['name_user']))||
 			($_SESSION['level']!=100))
 		{
-			redirect(base_url('trang_chu'));
+			redirect(base_url());
 		} else{
 
 		}

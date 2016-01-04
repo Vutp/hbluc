@@ -36,7 +36,7 @@ class Trang_chi_tiet extends CI_Controller {
     }
     $list_chi_tiet=$this->Map->lay_note($number);
     if (count($list_chi_tiet)!=13)
-      redirect(base_url('trang_chu'));
+      redirect(base_url());
     $trinh_tu_data=$this->trinh_tu->array_trans($list_chi_tiet[0]);
     $thoi_gian_data=$this->thoi_gian->array_trans($list_chi_tiet[1]);
     $cach_thuc_data=$this->cach_thuc->array_trans($list_chi_tiet[2]);

@@ -8,7 +8,7 @@ class Admin_phong_ban extends CI_Controller {
 		if((!isset($_SESSION['name_user']))||
 			(($_SESSION['level']!=21)&&
 			($_SESSION['level']!=22))){
-			redirect(base_url('trang_chu'));
+			redirect(base_url());
 		}
 	}
 	public function index()

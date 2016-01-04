@@ -4,7 +4,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
     </button>
-    <a href="<?php echo base_url('trang_chu'); ?>">
+    <a href="<?php echo base_url(); ?>">
         <img class="marTop" src="<?php echo base_url('img/favicon.ico'); ?>" alt="">
     </a>
 </div>

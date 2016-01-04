@@ -4,7 +4,7 @@
             <i class="fa fa-arrow-left"></i>
         </li>
         <li>
-            <a href="<?php echo base_url('trang_chu'); ?>"><i class="fa fa-home"></i> Trang chủ</a>
+            <a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Trang chủ</a>
         </li>
         <li>
             <a href="<?php echo base_url('tu_phap'); ?>"><i class="fa fa-files-o"></i> Hành chính tư pháp</a>
@@ -24,7 +24,7 @@
 
     <script>
 
-        var k = <?php echo json_encode(base_url('trang_chu')); ?>;
+        var k = <?php echo json_encode(base_url()); ?>;
         var today_1 = <?php echo json_encode(date("His",time()+1)); ?>;
         var today_2 = <?php echo json_encode(date("dmy")); ?>;
         var so_ngay = <?php echo json_encode($so_ngay); ?>;

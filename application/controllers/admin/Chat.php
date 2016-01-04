@@ -9,7 +9,7 @@ class Chat extends CI_Controller {
 		if((!isset($_SESSION['name_user']))||
 			($_SESSION['level']==4))
 		{
-			redirect('trang_chu');
+			redirect();
 		}
 	}
 	public function index()
@@ -23,11 +23,11 @@ class Chat extends CI_Controller {
         $this->load->view('templates/aside');
         $this->load->view('templates/nav');
 		if ($this->db->where('id',$vs)->count_all_results('user')!=1)
-			redirect('trang_chu');
+			redirect();
 		$this->load->model('Message');
 		$vs_data= $this->Message->talkvs($_SESSION['id'],$vs);
 		if ($vs_data=='---')
-			redirect(base_url('trang_chu'));
+			redirect(base_url());
         $date = new DateTime( date("Y-m-d"));
         $query = $this->Message->old_mess($vs_data,$date->format('W'),date("Y"));
 

@@ -9,7 +9,7 @@ class Admin_tiep_nhan extends CI_Controller {
 			(($_SESSION['level']!=12)&&
 				($_SESSION['level']!=11)))
 		{
-			redirect(base_url('trang_chu'));
+			redirect(base_url());
 		}
 
 	}

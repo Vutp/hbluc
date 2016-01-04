@@ -61,13 +61,13 @@ class Admin extends CI_Controller {
 		public function logout()
 	{
 		session_destroy();
-		redirect(base_url('trang_chu'));
+		redirect(base_url());
 	}
 		public function delete($id=1)
 	{
 		if((!isset($_SESSION['name_user']))
 			||($_SESSION['level']!=100)){
-			redirect(base_url('trang_chu'));
+			redirect(base_url());
 		}
 		$this->load->model('user');
 		$this->db->delete('user', array('id' => $id));

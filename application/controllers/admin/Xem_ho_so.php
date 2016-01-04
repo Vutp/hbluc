@@ -18,7 +18,7 @@ class Xem_ho_so extends CI_Controller {
 					'query'=>$query
 				));
 		}else{
-			redirect(base_url('trang_chu'));//Ying
+			redirect(base_url());//Ying
 		}
 		$this->load->view('templates/footer');
 
@@ -42,7 +42,7 @@ class Xem_ho_so extends CI_Controller {
 		$this->db->where('id', $id);
 		$details = $this->db->get('ho_so')->row();
 		if (!isset($details)) {
-			redirect(base_url('trang_chu'));
+			redirect(base_url());
 		}
 		$mshs = $details->mshs;
 		$tp1 = substr($mshs,7,2);//day
