@@ -13,7 +13,7 @@ class Giai_quyet_ho_so extends CI_Controller
             ($_SESSION['level'] != 100)
             )
         ) {
-            redirect(base_url('trang_chu'));
+            redirect(base_url());
         }
 
     }
