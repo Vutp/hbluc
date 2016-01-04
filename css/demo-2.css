@@ -5,6 +5,7 @@ body {
 
 #wrapper {
     width: 100%;
+    border-bottom: 1px solid #e7e7e7;
 }
 
 #page-wrapper {
@@ -17,7 +18,7 @@ body {
     #page-wrapper {
         position: inherit;
         padding: 0 30px;
-        border-left: 1px solid #e7e7e7;
+        /*border-left: 1px solid #e7e7e7;*/
     }
 }
 
@@ -473,6 +474,56 @@ body {
     top: 9px;
 }
 
+/* Footer */
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  /*width: 100%;*/
+  /* Set the fixed height of the footer here */
+  height: 60px;
+}
+.container {
+  width: auto;
+  max-width: 100%;
+  padding: 0 15px;
+}
+.container .text-muted {
+  margin: 20px 10px;
+}
+
+/* Menu */
+.sidebar ul li a.active {
+    color: #fff;
+    background-color: #018597;
+}
+
+/* Pagination */
+.pagination > .active > a, 
+.pagination > .active > a:focus, 
+.pagination > .active > a:hover, 
+.pagination > .active > span, 
+.pagination > .active > span:focus, 
+.pagination > .active > span:hover {
+    background-color: #018597;
+    border-color: #018597;
+}
+.pagination > li > a, .pagination > li > span {
+    color: #018597;
+}
+.pagination > li > a:focus, 
+.pagination > li > a:hover, 
+.pagination > li > span:focus, 
+.pagination > li > span:hover {
+    color: #FF040A;
+}
 
 /* Custom CSS */
 .brand {
@@ -530,7 +581,7 @@ a:hover {
 .back-to-top {
     position: fixed;
     bottom: 50%;
-    right: 0.1%;
+    right: 0.1em;
     display: none;
 }
 

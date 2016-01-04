@@ -89,7 +89,8 @@ $(document).ready(function() {
             "lengthMenu": "Hiển thị _MENU_",
             "loadingRecords": "Đang tải...",
             "processing": "Đang xử lý...",
-            "search": "Tìm kiếm",
+            "search": "",
+            searchPlaceholder: "Tìm kiếm...",
             "zeroRecords": "Không tìm thấy",
             "paginate": {
                 "first": "<i class='fa fa-angle-double-left'></i>",
