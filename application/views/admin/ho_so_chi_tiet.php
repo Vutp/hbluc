@@ -4,13 +4,13 @@
 			<i class="fa fa-arrow-left"></i>
 		</li>
 		<li>
-			<a href="<?php echo base_url(); ?>"><i class="fa fa-home"></i> Trang chủ</a>
+			<a href="<?php echo base_url('trang_chu'); ?>"><i class="fa fa-home"></i> Trang chủ</a>
 		</li>
 		<li class="active">
 			<i class="fa fa-file-o"></i> Hồ sơ chi tiết
 		</li>
 	</ol>
-	<?php echo '<h3 class="page-header marTop"><i class="fa fa-file-o"></i> '.$node_map[(int)substr($details->mshs, 16,2)]->node_name.'</h3>';
+<?php echo '<h3 class="page-header marTop"><i class="fa fa-file-o"></i> '.$node_map[(int)substr($details->mshs, 16,2)]->node_name.'</h3>';
 
 	if($details->status==0) $arr='Đang ở bàn tiếp nhận';
 	if($details->status==1)  $arr='Đang chờ xử lý';
@@ -23,36 +23,69 @@
 	if($details->status==8)  $arr='Hồ sơ có lỗi đã trả dân';
 	?>
 
+
+
 	<div class="row">
 		<div class="col-xs-6 col-md-2">
 			<p><strong>Họ và tên:</strong></p>
-			<p><strong>CMND:</strong></p>
+			<?php
+			if ((isset($_SESSION['name_user']))) {
+
+				if (($_SESSION['level'] == 11) || ($_SESSION['level'] == 12) || ($_SESSION['level'] == 13)) {
+					echo '<p><strong>Số điện thoại:</strong></p>';
+
+				} else {
+					echo '<p><strong>CMND:</strong></p>';
+				}
+			}else{
+				echo '<p><strong>CMND:</strong></p>';
+			}
+
+			?>
+
 			<p><strong>Tình trạng hồ sơ:</strong></p>
 		</div>
 		<div class="col-xs-6 col-md-4">
 			<p class="bold"><?php echo $details->name;?></p>
-			<p class="bold"><?php echo $details->cmnd;?></p>
+			<?php
+
+			if ((isset($_SESSION['name_user']))){
+				if(($_SESSION['level'] ==11) ||
+						($_SESSION['level'] == 12) || ($_SESSION['level'] == 13)){
+					echo '<p class="bold">'.$details->sdt.'</p>';
+
+				}else{
+					echo '<p class="bold">'.$details->cmnd.'</p>';
+				}
+			}else{
+				echo '<p class="bold">'.$details->cmnd.'</p>';
+			}
+
+
+
+			?>
+
 			<p class="bold"><?php echo $arr;?></p>
 		</div>
 		<div class="col-xs-6 col-md-2">
 			<p><strong>Mã số hồ sơ:</strong></p>
 			<p><strong>Ngày nhận:</strong></p>
 			<?php if (($details->status!=5)||($details->status!=8))
-				echo '<p><strong>Ngày trả dự kiến:</strong></p>';
-			else
-				echo '<p><strong>Ngày trả:</strong></p>';?>
+			echo '<p><strong>Ngày trả dự kiến:</strong></p>';
+			else 
+			echo '<p><strong>Ngày trả:</strong></p>';?>	
 		</div>
 		<div class="col-xs-6 col-md-3">
 			<p class="bold mshs"><?php echo $details->mshs ;?></p>
 			<p class="bold"><?php echo $ngay_nhan  ;?> </p>
 			<?php if (($details->status!=5)||($details->status!=8))
-				echo '<p class="bold">'.$ngay_tra .'</p>';
-			else
-				echo '<p class="bold">'.$details->ngay_tra .'</p>';?>
+			echo '<p class="bold">'.$ngay_tra .'</p>';
+			else 
+			echo '<p class="bold">'.$details->ngay_tra .'</p>';?>
 		</div>
 
 		<div class="col-xs-12 col-md-12">
-			<?php
+	<?php
 			$thong_tin_ho_so_da_thu=explode('+', $details->tt_giay_to_da_thu);
 			if(count($thong_tin_ho_so_da_thu) > 1){
 				echo '<div class="panel panel-info marTop">
@@ -64,15 +97,15 @@
 					</tr>
 				</thead>
 					<tbody>';
-				$thong_tin_ho_so_da_thu=explode('+', $details->tt_giay_to_da_thu);
-				for ($i = 0;$i<count($thong_tin_ho_so_da_thu)-1;$i++ ) {
-					echo '<tr class="active">
+					$thong_tin_ho_so_da_thu=explode('+', $details->tt_giay_to_da_thu);
+					for ($i = 0;$i<count($thong_tin_ho_so_da_thu)-1;$i++ ) {
+						echo '<tr class="active">
 							<td style="text-align: left">'.$thong_tin_ho_so_da_thu[$i].'</td>
 							<td style="text-align: center">'.$thong_tin_ho_so_da_thu[$i+1].'</td>
 						</tr>';
-					$i++;
-				}
-				echo'</tbody>
+						 $i++;
+						}
+					echo'</tbody>
 				</table></div>';
 
 				function get_string_between_ref($string, $start, $end){
@@ -128,10 +161,10 @@
 
 		</div>
 		<div class="col-xs-12 col-md-12">
-			<?php if  ($details->note!='')
-				echo'<h4><ins>Ghi chú:</ins></h4><p>'.$details->note .'</p>';
-			else
-				echo'<h4><ins>Ghi chú:</ins></h4><p>Không</p>';?>
+		<?php if  ($details->note!='')
+		echo'<h4><ins>Ghi chú:</ins></h4><p>'.$details->note .'</p>';
+		else 
+			echo'<h4><ins>Ghi chú:</ins></h4><p>Không</p>';?>
 		</div>
 
 		<div class="col-xs-12 col-md-12">
@@ -145,4 +178,5 @@
 		</div>
 
 	</div>
+
 </div><!-- /.col-lg-12 -->
