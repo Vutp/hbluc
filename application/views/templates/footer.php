@@ -4,6 +4,16 @@
 </div><!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
 
+<footer class="footer">
+  <div class="container">
+    <div class="text-muted">
+        <small>
+            <p><strong>Chịu trách nhiệm chính:</strong> Ông Nguyễn Thành Nhân - Phó Chủ tịch Ủy ban nhân dân huyện Bến Lức</p>
+            <p><strong>Địa chỉ:</strong> Số 213 QL1A Khu phố 3, Thị trấn Bến Lức, huyện Bến Lức, tỉnh Long An - <strong>Điện thoại:</strong> (072) 3871201 - <strong>Fax:</strong> (072) 3872223 - <strong>Email:</strong> benluc@longan.gov.vn - <strong>Ban biên tập:</strong> bbtbenluc@longan.gov.vn​​</p>
+        </small>
+    </div>
+</footer>
+    
 <button type="button" class="btn btn-danger back-to-top btn-circle"><i class="fa fa-arrow-up"></i></button>
 
 <script src="<?php echo base_url('js/jquery-ui.min.js'); ?>"></script><!-- jQuery -->

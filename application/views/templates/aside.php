@@ -1,5 +1,5 @@
 <div class="navmenu navbar-default sidebar navmenu-fixed-left offcanvas-sm">
-    <a class="navmenu-brand sidebar-nav visible-md visible-lg center" href="<?php echo base_url('trang_chu'); ?>">
+    <a class="navmenu-brand sidebar-nav visible-md visible-lg center" href="<?php echo base_url(); ?>">
         <img src="<?php echo base_url('img/logo.ico') ;?>" alt="">
         <p class="brand">UBND HUYỆN BẾN LỨC</p>
     </a>
@@ -27,9 +27,6 @@
                     </span>
             </div><!-- /input-group -->
             </form>
-        </li>
-        <li>
-            <a href="<?php echo base_url('trang_chu'); ?>"><i class="fa fa-home fa-fw"></i> Trang chủ</a>
         </li>
         <li>
             <a href="<?php echo base_url('tu_phap'); ?>"><i class="fa fa-files-o fa-fw"></i> Hành chính tư pháp<span class="fa arrow"></span></a>

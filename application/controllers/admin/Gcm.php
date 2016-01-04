@@ -41,7 +41,7 @@ class Gcm extends CI_Controller {
 	$greetMsg = $this->input->post('message');
 	
 	$respJson =  '{"greetMsg":"'.$greetMsg.'"}';
-	echo $greetMsg ;
+	//echo $greetMsg ;
 	$registation_ids = array();
 
 	$this->db->where('cmnd', $selUsers);
@@ -54,8 +54,8 @@ class Gcm extends CI_Controller {
 	// JSON Msg to be transmitted to selected Users
 	$message = array("m" => $respJson);  
 	$pushsts = $this->Gcm_model->sendPushNotificationToGCM($registation_ids, $message); 
-	$resp = $resp."<tr><td>".$pushsts."</td></tr>";
-	echo "<table>".$resp."</table>";
+	$resp = $resp."<br>".$pushsts;
+	echo $resp;
   		}
 
 
@@ -69,15 +69,40 @@ public function get_json($cmnd=123456789){
 		$response = array("ho_so_detail" => FALSE);
 		$linklist=array();
 		$link=array();
+			$q = $this->db->get('map');
+		if($q->num_rows()>0){
+			foreach($q->result() as $row){
+				$data[] = $row;
+			}
+
+		}
+
+
 	foreach ($query->result() as $row){
         $link["mshs"] = $row->mshs ;
-        $link["name"] = $row->name;
-        $link["type"] = $row->type;
+        $link["ten_thu_tuc"] = $data[(int)substr($row->mshs, 16,2)]->node_name;
+       	
+       	$tp1 = substr($row->mshs,7,2);//day
+		$tp2 = substr($row->mshs,9,2);//month
+		$tp3 = substr($row->mshs,11,2);//year
+		$so_ngay_giai_quyet=explode('-', $row->mshs);
+		$sngq = substr($so_ngay_giai_quyet[3],0,2);
+		$ngay_nhan = $tp2."/".$tp1."/20".$tp3;
+		$time = strtotime($ngay_nhan);
+		$ngay_nhan = date('d/m/Y',$time);//Ngay_nhan_cuoi_cung
+
+		$ngay_nhan_function = date('Y-m-d');
+ 		if (($row->status!=5)||($row->status!=8))
+		$ngay_tra = date('d/m/Y', strtotime($ngay_nhan_function."+".$sngq." days"));
+		else  $ngay_tra =$details->ngay_tra;
+
+        $link["ngay_tra"] = $ngay_tra;
+        $link["ngay_nhan"] = $ngay_nhan;
         $link["status"] =$row->status;
-        $link["giay_to"] =$row->tt_giay_to_da_thu;
-        $link["error"] =$row->error;
-        $link["tien_thu"] =$row->tien_thu;
-        $link["mcb"] = $row->mcb;
+//        $link["giay_to"] =$row->tt_giay_to_da_thu;
+ //       $link["error"] =$row->error;
+ //       $link["tien_thu"] =$row->tien_thu;
+ //       $link["mcb"] = $row->mcb;
          array_push($linklist,$link);
 		}
  		$response["ho_so_detail"] =$linklist;
@@ -88,7 +113,7 @@ public function get_json($cmnd=123456789){
 		fwrite($fp, json_encode($write));
 		fclose($fp);
 	}
-public function json_ho_so($id=2){
+public function json_ho_so($id=5){
 		header('Content-Type: application/json;charset=utf-8'); 
 		header('Content-disposition: attachment; filename=content.json');
 		$this->db->where('id', $id);
@@ -97,15 +122,40 @@ public function json_ho_so($id=2){
 		$response = array("ho_so_detail" => FALSE);
 		$linklist=array();
 		$link=array();
+		$q = $this->db->get('map');
+		if($q->num_rows()>0){
+			foreach($q->result() as $row){
+				$data[] = $row;
+			}
+
+		}
+		$this->db->where('id', $id);
+		$details = $this->db->get('ho_so')->row();
+		$mshs = $details->mshs;
+		$tp1 = substr($mshs,7,2);//day
+		$tp2 = substr($mshs,9,2);//month
+		$tp3 = substr($mshs,11,2);//year
+		$so_ngay_giai_quyet=explode('-', $mshs);
+		$sngq = substr($so_ngay_giai_quyet[3],0,2);
+		$ngay_nhan = $tp2."/".$tp1."/20".$tp3;
+		$time = strtotime($ngay_nhan);
+		$ngay_nhan = date('d/m/Y',$time);//Ngay_nhan_cuoi_cung
+
+		$ngay_nhan_function = date('Y-m-d');
+ 		if (($details->status!=5)||($details->status!=8))
+		$ngay_tra = date('d/m/Y', strtotime($ngay_nhan_function."+".$sngq." days"));
+		else  $ngay_tra =$details->ngay_tra;
 	foreach ($query->result() as $row){
         $link["mshs"] = $row->mshs ;
-        $link["name"] = $row->name;
-        $link["type"] = $row->type;
+        $link["ten_thu_tuc"] = $data[(int)substr($row->mshs, 16,2)]->node_name;
+        $link["ngay_tra"] = $ngay_tra;
+        $link["ngay_nhan"] = $ngay_nhan;
         $link["status"] =$row->status;
-        $link["giay_to"] =$row->tt_giay_to_da_thu;
-        $link["error"] =$row->error;
+      //  $link["giay_to"] =$row->tt_giay_to_da_thu;
+      //  $link["error"] =$row->error;
         $link["tien_thu"] =$row->tien_thu;
-        $link["mcb"] = $row->mcb;
+       // $link["mcb"] = $row->mcb;
+        $link["cmnd"] = $row->cmnd;
          array_push($linklist,$link);
 		}
  		$response["ho_so_detail"] =$linklist;
