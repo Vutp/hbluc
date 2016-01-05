@@ -583,6 +583,7 @@ a:hover {
     bottom: 50%;
     right: 0.1em;
     display: none;
+    z-index: 1000;
 }
 
 .radius {
