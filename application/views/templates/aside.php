@@ -35,22 +35,22 @@
                     <a href="<?php echo base_url('phan_muc/1');?>"><i class="fa fa-file-o fa-fw"></i> Chứng thực</a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url('phan_muc/5');?>"><i class="fa fa-file-o fa-fw"></i> Giám hộ</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url('phan_muc/6');?>"><i class="fa fa-file-o fa-fw"></i> Hộ tịch</a>
-                </li>
-                <li>
-                    <a href="<?php echo base_url('phan_muc/4');?>"><i class="fa fa-file-o fa-fw"></i> Kết hôn</a>
-                </li>
-                <li>
                     <a href="<?php echo base_url('phan_muc/2');?>"><i class="fa fa-file-o fa-fw"></i> Khai sinh</a>
                 </li>
                 <li>
                     <a href="<?php echo base_url('phan_muc/3');?>"><i class="fa fa-file-o fa-fw"></i> Khai tử</a>
                 </li>
                 <li>
-                    <a href="<?php echo base_url('phan_muc/9');?>"><i class="fa fa-file-o fa-fw"></i> Các thủ tục còn lại</a>
+                    <a href="<?php echo base_url('phan_muc/4');?>"><i class="fa fa-file-o fa-fw"></i> Kết hôn</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url('phan_muc/5');?>"><i class="fa fa-file-o fa-fw"></i> Giám hộ</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url('phan_muc/6');?>"><i class="fa fa-file-o fa-fw"></i> Hộ tịch</a>
+                </li>
+                <li>
+                    <a href="<?php echo base_url('phan_muc/7');?>"><i class="fa fa-file-o fa-fw"></i> Các thủ tục còn lại</a>
                 </li>
             </ul><!-- /.nav-second-level -->
         </li>
