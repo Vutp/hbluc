@@ -13,15 +13,13 @@
     <h3 class="page-header marTop"><i class="fa fa-file-o"></i> <?php echo html_escape($node_map->node_name); ?></h3>
 
     <script>
-
         var k = <?php echo json_encode(base_url()); ?>;
         var today_1 = <?php echo json_encode(date("His",time()+1)); ?>;
         var today_2 = <?php echo json_encode(date("dmy")); ?>;
-        var so_ngay = <?php echo json_encode(0); ?>;
+        var so_ngay = <?php echo json_encode(""); ?>;
         var node_id = <?php echo json_encode($node_map->node_id); ?>;
 
     </script>
-
     <?php
     $today_1 =  date("Ymd");
     //Lấy dữ liệu từ $thanh_phan_data truyen qua de dung cho viec ho so dinh kem
@@ -195,7 +193,6 @@
                         <!--List of temporary textboxs-->
                         <input type="text" id="ying_ho_so_da_nhan" name = "dying" style="visibility: hidden" >
 
-                        <input type="text" id="lephi" value="Yingjie" style="visibility: hidden" >
 
                         <!-- <input type="checkbox" onclick="myCheckboxFunction();"> -->
                         <input type="submit"  onclick="compileInputs();" class="btn btn-success btn-lg btn-block" id = 'submit'name="submit" value="Nhập hồ sơ">
@@ -203,3 +200,85 @@
                 </div>
             </form>
     </div>
+<script>
+
+    var string_1 = "DD";
+    var theLifeOfWolf = 0;
+    var theLifeOfYing = 0;
+
+    var songayJquery = $('#songay');
+    songayJquery.val(so_ngay);
+
+    if (node_id > 1) {
+        theLifeOfWolf = node_id - 1;
+        if (theLifeOfWolf < 10) {
+            theLifeOfYing = "0" + theLifeOfWolf;
+        } else {
+            theLifeOfYing = theLifeOfWolf;
+        }
+    }
+    var theString = today_1 + "-" + today_2 + "-" + string_1 + theLifeOfYing + "-";
+    var addCode = songayJquery.val();
+    addCode = parseInt(addCode);
+
+    theString = theString + addCode;
+    var ma_Ho_So_Jquey = $('#ma_Ho_So');
+    ma_Ho_So_Jquey.val(theString);
+
+
+
+    var myDayVar = songayJquery.val();
+
+    var myDate = new Date();
+
+    var ngayTra = new Date(myDate.getTime() + myDayVar * 24 * 3600 * 1000);
+
+    var dd = (ngayTra.getDate() < 10 ? '0' : '') + ngayTra.getDate();
+    var MM = ((ngayTra.getMonth() + 1) < 10 ? '0' : '') + (ngayTra.getMonth() + 1);
+    var yyyy = ngayTra.getFullYear();
+    var thu = ngayTra.getDay();
+    var weekday;
+
+    switch (thu) {
+        case 1:
+            weekday = 'Thứ hai';
+            break;
+        case 2:
+            weekday = 'Thứ ba';
+            break;
+        case 3:
+            weekday = 'Thứ tư';
+            break;
+        case 4:
+            weekday = 'Thứ năm';
+            break;
+        case 5:
+            weekday = 'Thứ sáu';
+            break;
+        case 6:
+            weekday = 'Thứ bảy';
+            break;
+        default:
+            weekday = 'Chủ nhật';
+            break;
+    }
+
+    var myTimeString = weekday + ", Ngày " + dd + " Tháng " + MM + " Năm " + yyyy;
+    if (myDayVar == "") {
+        document.getElementById("time_info").innerHTML = "";
+    } else {
+        var time_info = $('#time_info');
+        if (thu == 0 || thu == 6) {
+            document.getElementById("time_info").innerHTML = myTimeString;
+            time_info.removeClass('anotherClass');
+            time_info.addClass('myClass');
+        } else {
+            document.getElementById("time_info").innerHTML = myTimeString;
+            time_info.removeClass('myClass');
+            time_info.addClass('anotherClass');
+        }
+    }
+    //OK
+
+
+</script>
