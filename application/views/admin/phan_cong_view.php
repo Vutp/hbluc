@@ -78,6 +78,19 @@
         var link2 = mylink+"admin/phan_cong/getCongViec";
         var link3 = mylink+"admin/phan_cong/getIndividual";
 
+        var today = new Date();
+        var ngay = today.getDate();
+        var thang = today.getMonth() + 1;
+        var nam = today.getFullYear();
+
+        if(ngay < 10){
+            ngay = '0'+ngay;
+        }
+        if(thang < 10){
+            thang = '0'+thang;
+        }
+         today = nam+'-'+thang+'-'+ngay;
+
 
         $.ajax({
             url: link2,
@@ -155,7 +168,7 @@
                 },
 
                 selectable: true,
-                defaultDate: '2015-12-01',
+                defaultDate: today,
                 editable: true,
                 selectHelper: true,
                 eventLimit: true,
